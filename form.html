@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voter Registration Form | E-Voting Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .form-section {
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--gray);
+            padding-bottom: 1rem;
+        }
+        
+        .form-section:last-child {
+            border-bottom: none;
+        }
+        
+        .form-section h3 {
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .form-intro {
+            margin-bottom: 2rem;
+        }
+        
+        .required {
+            color: var(--danger);
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        
+        .file-upload {
+            border: 2px dashed var(--gray);
+            padding: 1rem;
+            border-radius: 5px;
+            text-align: center;
+        }
+        
+        .form-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-buttons {
+                flex-direction: column;
+            }
+            
+            .form-buttons button {
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="nav-logo">
+                <div class="logo">
+                    <img src="./assets/Election-Commission_Preview.png" alt="Election Commission of India Logo">
+                </div>
+            </div>
+            <div>
+                <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                <a href="contact.html"><i class="fas fa-envelope"></i> Contact Us</a>
+                <a href="About Us.html"><i class="fas fa-info-circle"></i> About Us</a>
+                <a href="signin.html"><i class="fas fa-user-plus"></i> Sign Up</a>
+                <a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <h2><i class="fas fa-clipboard-list"></i> Voter Registration Form</h2>
+        <p class="form-intro">Fill out the form below to register as a voter. Fields marked with <span class="required">*</span> are mandatory.</p>
+        
+        <form id="voterRegistrationForm">
+            <div class="form-section">
+                <h3>Personal Information</h3>
+                
+                <label for="fullname">Full Name <span class="required">*</span></label>
+                <input type="text" id="fullname" name="fullname" required>
+
+                <label for="dob">Date of Birth <span class="required">*</span></label>
+                <input type="date" id="dob" name="dob" required>
+
+                <label for="gender">Gender <span class="required">*</span></label>
+                <select id="gender" name="gender" required>
+                    <option value="">Select your gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+
+                <label for="fathername">Father's/Mother's/Spouse's Name <span class="required">*</span></label>
+                <input type="text" id="fathername" name="fathername" required>
+            </div>
+
+            <div class="form-section">
+                <h3>Identification</h3>
+                
+                <label for="voterid">Voter ID Number (EPIC)</label>
+                <input type="text" id="voterid" name="voterid" placeholder="Enter your 10-digit EPIC number">
+
+                <label for="aadhaar">Aadhaar Number (Optional)</label>
+                <input type="text" id="aadhaar" name="aadhaar" placeholder="Enter your 12-digit Aadhaar number">
+
+                <label for="photo">Upload Photograph <span class="required">*</span></label>
+                <input type="file" id="photo" name="photo" accept="image/*" required>
+            </div>
+
+            <div class="form-section">
+                <h3>Contact Details</h3>
+                
+                <label for="address">Full Address <span class="required">*</span></label>
+                <input type="text" id="address" name="address" required>
+
+                <div class="form-row">
+                    <div>
+                        <label for="state">State <span class="required">*</span></label>
+                        <input type="text" id="state" name="state" required>
+                    </div>
+
+                    <div>
+                        <label for="district">District <span class="required">*</span></label>
+                        <input type="text" id="district" name="district" required>
+                    </div>
+                </div>
+                
+                <label for="residential">Upload Residential Proof <span class="required">*</span></label>
+                <input type="file" id="residential" name="residential" accept="image/*" required>
+
+                <label for="mobile">Mobile Number <span class="required">*</span></label>
+                <input type="tel" id="mobile" name="mobile" required>
+
+                <label for="email">Email ID</label>
+                <input type="email" id="email" name="email">
+
+                <label for="altcontact">Alternate Contact (Optional)</label>
+                <input type="tel" id="altcontact" name="altcontact">
+            </div>
+
+            <div class="form-section">
+                <h3>Additional Information</h3>
+                
+                <label for="disability">Do you have any disabilities?</label>
+                <select id="disability" name="disability">
+                    <option value="no">No</option>
+                    <option value="yes">Yes</option>
+                </select>
+
+                <label for="occupation">Occupation (Optional)</label>
+                <input type="text" id="occupation" name="occupation">
+
+                <label for="firsttime">Are you a first-time voter?</label>
+                <select id="firsttime" name="firsttime">
+                    <option value="no">No</option>
+                    <option value="yes">Yes</option>
+                </select>
+                
+                <label for="declaration" style="display: flex; align-items: flex-start;">
+                    <input type="checkbox" id="declaration" name="declaration" required style="margin-top: 5px; margin-right: 10px; width: auto;">
+                    <span>I hereby declare that the above information is true to the best of my knowledge.</span>
+                </label>
+            </div>
+
+            <div class="form-buttons">
+                <button type="reset" class="btn btn-outline"><i class="fas fa-undo"></i> Reset Form</button>
+                <button type="submit" class="btn"><i class="fas fa-paper-plane"></i> Submit Registration</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="contestant.html">Candidates</a></li>
+                        <li><a href="form.html">Register to Vote</a></li>
+                        <li><a href="About Us.html">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Election Commission of India, New Delhi</p>
+                    <p><i class="fas fa-phone"></i> Toll Free: 1800-11-1950</p>
+                    <p><i class="fas fa-envelope"></i> contact@eci.gov.in</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Election Commission of India. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Check if user is logged in
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentUser = localStorage.getItem('currentUser');
+            if (!currentUser) {
+                alert("Please log in or sign up first.");
+                window.location.href = "signin.html";
+            }
+        });
+        
+        // Form submission handler
+        document.getElementById('voterRegistrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get current user
+            const currentUser = localStorage.getItem('currentUser');
+            if (!currentUser) {
+                alert("Session expired. Please log in again.");
+                window.location.href = "login.html";
+                return;
+            }
+            
+            // Get form values
+            const fullname = document.getElementById('fullname').value;
+            const dob = document.getElementById('dob').value;
+            const gender = document.getElementById('gender').value;
+            const fathername = document.getElementById('fathername').value;
+            const voterid = document.getElementById('voterid').value || currentUser; // Use entered ID or current user ID
+            const aadhaar = document.getElementById('aadhaar').value;
+            const address = document.getElementById('address').value;
+            const state = document.getElementById('state').value;
+            const district = document.getElementById('district').value;
+            const mobile = document.getElementById('mobile').value;
+            const email = document.getElementById('email').value;
+            const disability = document.getElementById('disability').value;
+            const occupation = document.getElementById('occupation').value;
+            const firsttime = document.getElementById('firsttime').value;
+            
+            // Get users from localStorage
+            let users = JSON.parse(localStorage.getItem('voters')) || [];
+            
+            // Find current user
+            const userIndex = users.findIndex(user => user.voterId === currentUser);
+            
+            if (userIndex === -1) {
+                alert("User not found. Please register again.");
+                window.location.href = "signin.html";
+                return;
+            }
+            
+            // Update user with additional details
+            users[userIndex] = {
+                ...users[userIndex],
+                fullname,
+                dob,
+                gender,
+                fathername,
+                aadhaar,
+                address,
+                state,
+                district,
+                fullRegistration: true,
+                disability,
+                occupation,
+                firsttime,
+                registrationCompleted: new Date().toISOString()
+            };
+            
+            // Update mobile and email if provided
+            if (mobile) users[userIndex].mobile = mobile;
+            if (email) users[userIndex].email = email;
+            
+            // Save updated user data
+            localStorage.setItem('voters', JSON.stringify(users));
+            
+            // Simulate checking if voter has already voted (for demonstration purposes)
+            const hasAlreadyVoted = false; // In a real app, this would be a server check
+            
+            if (hasAlreadyVoted) {
+                // If already voted, redirect to already voted page
+                window.location.href = "already voted.html";
+            } else {
+                // If not voted yet, redirect to thank you page
+                window.location.href = "thankyou.html";
+            }
+        });
+    </script>
+</body>
+</html>

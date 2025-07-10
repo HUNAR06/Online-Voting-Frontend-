@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You | E-Voting Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .thank-you-container {
+            max-width: 700px;
+            margin: 5rem auto;
+            padding: 3rem;
+            text-align: center;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+        
+        .thank-you-icon {
+            font-size: 5rem;
+            color: var(--success);
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            border: 3px solid var(--success);
+            width: 120px;
+            height: 120px;
+            line-height: 120px;
+            border-radius: 50%;
+        }
+        
+        .thank-you-heading {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .thank-you-message {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+        
+        .reference-number {
+            background-color: #f8f9fa;
+            padding: 1rem;
+            border-radius: 5px;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 2rem;
+            border: 1px dashed #ccc;
+            display: inline-block;
+        }
+        
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .thank-you-container {
+                padding: 2rem 1.5rem;
+                margin: 3rem 1rem;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .thank-you-icon {
+                font-size: 4rem;
+                width: 100px;
+                height: 100px;
+                line-height: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="navbar">
+            <div class="nav-logo">
+                <div class="logo">
+                    <img src="./assets/Election-Commission_Preview.png" alt="Election Commission of India Logo">
+                </div>
+            </div>
+            <div>
+                <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                <a href="contact.html"><i class="fas fa-envelope"></i> Contact Us</a>
+                <a href="About Us.html"><i class="fas fa-info-circle"></i> About Us</a>
+                <a href="signin.html"><i class="fas fa-user-plus"></i> Sign Up</a>
+                <a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Thank You Section -->
+    <div class="thank-you-container">
+        <div class="thank-you-icon">
+            <i class="fas fa-check"></i>
+        </div>
+        
+        <h1 class="thank-you-heading">Thank You for Voting!</h1>
+        
+        <p class="thank-you-message">
+            Your vote has been successfully registered. Your participation strengthens our democracy.
+            Thank you for being a responsible citizen and exercising your right to vote.
+        </p>
+        
+        <div class="reference-number">
+            <p>Your Reference Number:</p>
+            <p>ECI-2025-<span id="reference"></span></p>
+        </div>
+        
+        <p>A confirmation has been sent to your registered email address and mobile number.</p>
+        
+        <div class="action-buttons">
+            <a href="index.html" class="btn btn-outline"><i class="fas fa-home"></i> Return to Homepage</a>
+            <a href="contestant.html" class="btn"><i class="fas fa-chart-bar"></i> View Live Results</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="contestant.html">Candidates</a></li>
+                        <li><a href="form.html">Register to Vote</a></li>
+                        <li><a href="About Us.html">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Election Commission of India, New Delhi</p>
+                    <p><i class="fas fa-phone"></i> Toll Free: 1800-11-1950</p>
+                    <p><i class="fas fa-envelope"></i> contact@eci.gov.in</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Election Commission of India. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Generate a random reference number or use the one from localStorage
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentUser = localStorage.getItem('currentUser');
+            const users = JSON.parse(localStorage.getItem('voters')) || [];
+            const currentUserData = users.find(user => user.voterId === currentUser);
+            
+            // Check if user exists and has voted
+            if (currentUserData && currentUserData.hasVoted) {
+                // Display the reference number
+                document.getElementById('reference').textContent = currentUserData.voteReferenceNumber.split('-')[2] || Math.floor(Math.random() * 9000000) + 1000000;
+                
+                // Personalize the thank you message if we have the user's name
+                if (currentUserData.fullname || currentUserData.firstName) {
+                    const userName = currentUserData.fullname || `${currentUserData.firstName} ${currentUserData.lastName}`;
+                    document.querySelector('.thank-you-heading').textContent = `Thank You for Voting, ${userName.split(' ')[0]}!`;
+                }
+                
+                // Add the voted candidate info if available
+                if (currentUserData.votedFor) {
+                    const thankYouMessage = document.querySelector('.thank-you-message');
+                    thankYouMessage.innerHTML += `<br><br>You have voted for <strong>${currentUserData.votedFor}</strong> of <strong>${currentUserData.votedParty}</strong>.`;
+                }
+            } else {
+                // Fallback if user data is not available
+                document.getElementById('reference').textContent = Math.floor(Math.random() * 9000000) + 1000000;
+            }
+        });
+    </script>
+</body>
+</html>

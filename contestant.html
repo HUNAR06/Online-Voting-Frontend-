@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candidates | E-Voting Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .intro-text {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 1.2rem;
+        }
+        
+        .candidate-card {
+            position: relative;
+            background: white;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .candidate-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .candidate-img {
+            width: 100%;
+            height: 220px;
+            object-fit:none;
+            border-bottom: 4px solid var(--primary);
+        }
+        
+        .candidate-info {
+            padding: 1.5rem;
+        }
+        
+        .candidate-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        
+        .party-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 5px 10px;
+            background-color: #f0f0f0;
+            border-radius: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .party-badge img {
+            width: 20px;
+            height: 20px;
+            margin-right: 8px;
+            object-fit: contain;
+        }
+        
+        .btn-group {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+        }
+        
+        .candidate-details {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+        
+        .candidate-details.show {
+            padding: 1rem 1.5rem;
+            max-height: 500px;
+            border-top: 1px solid #eee;
+        }
+        
+        .candidate-details p {
+            margin-bottom: 0.8rem;
+        }
+        
+        .candidate-details ul {
+            padding-left: 1.5rem;
+        }
+        
+        .candidate-details ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .vote-btn {
+            padding: 0.6rem 1.5rem;
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .vote-btn:hover {
+            background-color: var(--secondary-light);
+            transform: translateY(-2px);
+        }
+        
+        .details-btn {
+            padding: 0.6rem 1.5rem;
+            background-color: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            border-radius: 5px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .details-btn:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .ribbon {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 150px;
+            height: 150px;
+            overflow: hidden;
+        }
+        
+        .ribbon-content {
+            position: absolute;
+            display: block;
+            width: 225px;
+            padding: 15px 0;
+            background-color: var(--primary);
+            box-shadow: 0 5px 10px rgba(0,0,0,.1);
+            color: #fff;
+            text-align: center;
+            right: -25px;
+            top: 30px;
+            transform: rotate(45deg);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="navbar">
+            <div class="nav-logo">
+                <div class="logo">
+                    <img src="./assets/Election-Commission_Preview.png" alt="Election Commission of India Logo">
+                </div>
+            </div>
+            <div>
+                <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                <a href="contact.html"><i class="fas fa-envelope"></i> Contact Us</a>
+                <a href="About Us.html"><i class="fas fa-info-circle"></i> About Us</a>
+                <a href="signin.html"><i class="fas fa-user-plus"></i> Sign Up</a>
+                <a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <h1>Candidates for Election 2025</h1>
+            <p class="intro-text">Learn about the candidates and cast your vote for the future of our nation.</p>
+            
+            <div class="candidate-container">
+                <!-- Candidate 1 -->
+                <div class="candidate-card">
+                    <img src="./assets/./arvind.jpg" alt="Bhagwant Mann" class="candidate-img">
+                    <div class="candidate-info">
+                        <h3>Arvind Kejriwal</h3>
+                        <div class="party-badge">
+                            <img src="./assets/aap.jpg" alt="AAP Logo">
+                            <span>Aam Aadmi Party</span>
+                        </div>
+                       
+                        <div class="btn-group">
+                            <button class="details-btn" data-id="candidate1"><i class="fas fa-info-circle"></i> Details</button>
+                            <button class="vote-btn" data-id="candidate1"><i class="fas fa-vote-yea"></i> Vote</button>
+                        </div>
+                    </div>
+                    <div class="candidate-details" id="details-candidate1">
+                        <p><strong>Date of Birth:</strong> 16 August 1968</p>
+                        <p><strong>Age:</strong> 56 years (as of 2025)</p>
+                        <p><strong>Criminal Record:</strong> As of January 2025, Kejriwal has 14 criminal cases pending, including one from the 2014 Lok Sabha elections in Amethi and others related to the Delhi Excise Policy</p>
+                        <p><strong>Contributions:</strong></p>
+                        <ul>
+                            <li>Launched Anti-Corruption Movement & RTI Advocacy.</li>
+                            <li>India Against Corruption Movement (2011).</li>
+                            <li>Focused on improving education and healthcare infrastructure.</li>
+                            <li>Transport and safety.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Candidate 2 -->
+                <div class="candidate-card">
+                    <img src="./assets/./yogi.jpg" alt="Candidate 2" class="candidate-img">
+                    <div class="candidate-info">
+                        <h3>Yogi Adityanath</h3>
+                        <div class="party-badge">
+                            <img src="./assets/bjp.jpg" alt="BJP Logo">
+                            <span>Bharatiya Janata Party</span>
+                        </div>
+                        
+                        <div class="btn-group">
+                            <button class="details-btn" data-id="candidate2"><i class="fas fa-info-circle"></i> Details</button>
+                            <button class="vote-btn" data-id="candidate2"><i class="fas fa-vote-yea"></i> Vote</button>
+                        </div>
+                    </div>
+                    <div class="candidate-details" id="details-candidate2">
+                        <p><strong>Date of Birth:</strong> 5 June, 1972</p>
+                        <p><strong>Age:</strong> 52 years</p>
+                        <p><strong>Criminal Record:</strong> 2 cases are there</p>
+                        <p><strong>Contributions:</strong></p>
+                        <ul>
+                            <li>Launched multiple infrastructure development projects</li>
+                            <li>reduction in crime rates and crackdown on crime</li>
+                            <li>women's safety</li>
+                            <li>Employement Generation</li>
+                            <li>Economic and social initiatives</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Candidate 3 -->
+                <div class="candidate-card">
+                    <img src="./assets/./mamta.jpg" alt="Candidate 3" class="candidate-img">
+                    <div class="candidate-info">
+                        <h3>Mamata Banerjee</h3>
+                        <div class="party-badge">
+                            <img src="./assets/download.jpeg" alt="Congress Logo">
+                            <span>	All India Trinamool Congress (AITC)</span>
+                        </div>
+                        
+                        <div class="btn-group">
+                            <button class="details-btn" data-id="candidate3"><i class="fas fa-info-circle"></i> Details</button>
+                            <button class="vote-btn" data-id="candidate3"><i class="fas fa-vote-yea"></i> Vote</button>
+                        </div>
+                    </div>
+                    <div class="candidate-details" id="details-candidate3">
+                        <p><strong>Date of Birth:</strong> 5 January, 1955</p>
+                        <p><strong>Age:</strong> 70 years (as of  may 2025)</p>
+                        <p><strong>Criminal Record:</strong>Defamation Suit by West Bengal Governor (2024)
+                            Saradha Chit Fund Scam (2013)
+                            West Bengal School Service Commission (SSC) Recruitment Scam
+                            National Anthem Case (2021)
+                            Assam NRC Comments (2018)</p>
+                        <p><strong>Contributions:</strong></p>
+                        <ul>
+                            <li>Lakshmir Bhandar Scheme</li>
+                            <li>Nirmal Bangla Missions</li>
+                            <li>Kanyashree Prakalpa</li>
+                            <li>Fair Price Medicine Shops</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Additional Candidates -->
+                <div class="candidate-card">
+                    <img src="./assets/./Eknath Shinde.jpg" alt="Candidate 4" class="candidate-img">
+                    <div class="candidate-info">
+                        <h3>Eknath Shinde</h3>
+                        <div class="party-badge">
+                            <img src="./assets/shiv.jpg" alt="AAP Logo">
+                            <span>Shiv Sena</span>
+                        </div>
+                        
+                        <div class="btn-group">
+                            <button class="details-btn" data-id="candidate4"><i class="fas fa-info-circle"></i> Details</button>
+                            <button class="vote-btn" data-id="candidate4"><i class="fas fa-vote-yea"></i> Vote</button>
+                        </div>
+                    </div>
+                    <div class="candidate-details" id="details-candidate4">
+                        <p><strong>Date of Birth:</strong> 9 February, 1964</p>
+                        <p><strong>Age:</strong> 61 years (as of 2025)</p>
+                        <p><strong>Criminal Record:</strong> No serious criminal cases</p>
+                        <p><strong>Contributions:</strong></p>
+                        <ul>
+                            <li>Mumbai Metro Expansion</li>
+                            <li>Smart City Projects</li>
+                            <li>Thane developement plan</li>
+                            <li>Enhanced public transport infrastructure</li>
+                            <li>Education and Social Welfare</li>
+                            <li>Political Reforms & Governance</li>
+                            <li>Environment Initiatives</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="contestant.html">Candidates</a></li>
+                        <li><a href="form.html">Register to Vote</a></li>
+                        <li><a href="About Us.html">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Election Commission of India, New Delhi</p>
+                    <p><i class="fas fa-phone"></i> Toll Free: 1800-11-1950</p>
+                    <p><i class="fas fa-envelope"></i> contact@eci.gov.in</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Election Commission of India. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Check if user is logged in
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentUser = localStorage.getItem('currentUser');
+            if (!currentUser) {
+                alert("Please log in or sign up first to vote.");
+                // We allow viewing candidates without login, but voting requires login
+            } else {
+                // Check if user is registered fully
+                const users = JSON.parse(localStorage.getItem('voters')) || [];
+                const currentUserData = users.find(user => user.voterId === currentUser);
+                
+                if (currentUserData && currentUserData.hasVoted) {
+                    // If user already voted, show notification
+                    const votingButtons = document.querySelectorAll('.vote-btn');
+                    votingButtons.forEach(btn => {
+                        btn.disabled = true;
+                        btn.innerHTML = '<i class="fas fa-check-circle"></i> Voted';
+                        btn.style.backgroundColor = '#ccc';
+                        btn.style.cursor = 'not-allowed';
+                        
+                        // If they voted for this candidate, highlight it
+                        const candidateName = btn.closest('.candidate-card').querySelector('h3').textContent;
+                        if (currentUserData.votedFor === candidateName) {
+                            btn.innerHTML = '<i class="fas fa-check-circle"></i> Your Vote';
+                            btn.style.backgroundColor = 'var(--success)';
+                            
+                            // Add a visual indicator
+                            btn.closest('.candidate-card').style.boxShadow = '0 0 15px rgba(40, 167, 69, 0.5)';
+                        }
+                    });
+                }
+            }
+        });
+        
+        // Toggle candidate details
+        document.querySelectorAll('.details-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const candidateId = this.getAttribute('data-id');
+                const detailsElement = document.getElementById('details-' + candidateId);
+                
+                if (detailsElement.classList.contains('show')) {
+                    detailsElement.classList.remove('show');
+                    this.innerHTML = '<i class="fas fa-info-circle"></i> Details';
+                } else {
+                    // Close all other open details first
+                    document.querySelectorAll('.candidate-details.show').forEach(el => {
+                        el.classList.remove('show');
+                        const relatedBtn = document.querySelector(`[data-id="${el.id.replace('details-', '')}"]`);
+                        if (relatedBtn) {
+                            relatedBtn.innerHTML = '<i class="fas fa-info-circle"></i> Details';
+                        }
+                    });
+                    
+                    // Open this one
+                    detailsElement.classList.add('show');
+                    this.innerHTML = '<i class="fas fa-times-circle"></i> Close';
+                }
+            });
+        });
+        
+        // Vote button functionality
+        document.querySelectorAll('.vote-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const candidateId = this.getAttribute('data-id');
+                const candidateName = this.closest('.candidate-card').querySelector('h3').textContent;
+                const candidateParty = this.closest('.candidate-card').querySelector('.party-badge span').textContent;
+                
+                // Check if user is logged in
+                const currentUser = localStorage.getItem('currentUser');
+                if (!currentUser) {
+                    alert("Please log in or sign up to vote.");
+                    window.location.href = "login.html";
+                    return;
+                }
+                
+                // Get users from localStorage
+                let users = JSON.parse(localStorage.getItem('voters')) || [];
+                const userIndex = users.findIndex(user => user.voterId === currentUser);
+                
+                if (userIndex === -1) {
+                    alert("User not found. Please register again.");
+                    window.location.href = "signin.html";
+                    return;
+                }
+                
+                // Check if user has completed full registration
+                if (!users[userIndex].fullRegistration) {
+                    alert("Please complete your voter registration first.");
+                    window.location.href = "form.html";
+                    return;
+                }
+                
+                // Check if user has already voted
+                if (users[userIndex].hasVoted) {
+                    alert("You have already cast your vote.");
+                    window.location.href = "already voted.html";
+                    return;
+                }
+                
+                // Confirm vote
+                if (confirm(`Are you sure you want to vote for ${candidateName} of ${candidateParty}?`)) {
+                    // Update user's voting status
+                    users[userIndex].hasVoted = true;
+                    users[userIndex].votedFor = candidateName;
+                    users[userIndex].votedParty = candidateParty;
+                    users[userIndex].voteTimestamp = new Date().toISOString();
+                    
+                    // Generate a reference number
+                    const referenceNumber = "ECI-2025-" + Math.floor(1000000 + Math.random() * 9000000);
+                    users[userIndex].voteReferenceNumber = referenceNumber;
+                    
+                    // Save to localStorage
+                    localStorage.setItem('voters', JSON.stringify(users));
+                    localStorage.setItem('lastVoteRef', referenceNumber);
+                    
+                    // Update candidate votes (create if not exists)
+                    let candidates = JSON.parse(localStorage.getItem('candidates')) || [];
+                    const candidateIndex = candidates.findIndex(c => c.name === candidateName);
+                    
+                    if (candidateIndex !== -1) {
+                        candidates[candidateIndex].votes++;
+                    } else {
+                        candidates.push({
+                            name: candidateName,
+                            party: candidateParty,
+                            votes: 1,
+                            id: candidateId
+                        });
+                    }
+                    
+                    // Save updated candidates
+                    localStorage.setItem('candidates', JSON.stringify(candidates));
+                    
+                    // Show success message and redirect
+                    alert(`✅ Your vote for ${candidateName} has been registered successfully!`);
+                    window.location.href = "thankyou.html";
+                }
+            });
+        });
+    </script>
+</body>
+</html>

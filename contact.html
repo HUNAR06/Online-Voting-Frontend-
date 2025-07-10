@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | E-Voting Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .contact-hero {
+            background: linear-gradient(rgba(26, 75, 132, 0.8), rgba(26, 75, 132, 0.9)), url('./assets/images.jpg');
+            background-size: cover;
+            background-position: center;
+            color: black;
+            text-align: center;
+            padding: 4rem 1rem;
+        }
+        
+        .contact-hero h1 {
+            color: black;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-hero p {
+            color: black;
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .contact-container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+        
+        .contact-info h2, .contact-form h2 {
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .contact-item {
+            display: flex;
+            margin-bottom: 2rem;
+        }
+        
+        .contact-icon {
+            font-size: 1.5rem;
+            color: var(--secondary);
+            margin-right: 1rem;
+            min-width: 40px;
+            height: 40px;
+            background-color: rgba(255, 123, 37, 0.1);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .contact-details h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        
+        .contact-details p, .contact-details a {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .contact-details a:hover {
+            color: var(--secondary);
+        }
+        
+        .contact-form-container {
+            background-color: white;
+            padding: 2.5rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+            font-weight: 500;
+        }
+        
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid var(--gray);
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+            border-color: var(--primary-light);
+            box-shadow: 0 0 0 2px rgba(44, 108, 176, 0.2);
+            outline: none;
+        }
+        
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background-color: var(--primary);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 1rem;
+        }
+        
+        .submit-btn:hover {
+            background-color: var(--primary-light);
+            transform: translateY(-3px);
+        }
+        
+        .map-container {
+            margin-top: 4rem;
+        }
+        
+        .map-container h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--primary);
+        }
+        
+        .map-frame {
+            width: 100%;
+            height: 450px;
+            border: none;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+        
+        .faq-section {
+            margin: 4rem 0;
+            padding: 3rem 0;
+            background-color: #f8f9fa;
+        }
+        
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .faq-heading {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .faq-item {
+            margin-bottom: 1.5rem;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        
+        .faq-question {
+            padding: 1.2rem;
+            background-color: white;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .faq-question:hover {
+            background-color: #f0f0f0;
+        }
+        
+        .faq-answer {
+            padding: 0 1.2rem;
+            max-height: 0;
+            overflow: hidden;
+            background-color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .faq-answer.active {
+            padding: 1.2rem;
+            max-height: 300px;
+        }
+        
+        .faq-toggle {
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
+        
+        @media (max-width: 992px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-info {
+                order: 2;
+            }
+            
+            .contact-form {
+                order: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="navbar">
+            <div class="nav-logo">
+                <div class="logo">
+                    <img src="./assets/Election-Commission_Preview.png" alt="Election Commission of India Logo">
+                </div>
+            </div>
+            <div>
+                <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                <a href="contact.html" class="active"><i class="fas fa-envelope"></i> Contact Us</a>
+                <a href="About Us.html"><i class="fas fa-info-circle"></i> About Us</a>
+                <a href="signin.html"><i class="fas fa-user-plus"></i> Sign Up</a>
+                <a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="contact-hero">
+        <div class="container">
+            <h1>Get in Touch with Us</h1>
+            <p>Have questions or need assistance? We're here to help you with any inquiries related to the electoral process.</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <div class="contact-container">
+        <div class="contact-grid">
+            <div class="contact-info">
+                <h2>Contact Information</h2>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h3>Our Location</h3>
+                        <p>Election Commission of India<br>Nirvachan Sadan, Ashoka Road<br>New Delhi - 110001, India</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h3>Phone Contact</h3>
+                        <p>Toll Free: <a href="tel:18001111950">1800-11-1950</a><br>Helpdesk: <a href="tel:01123052220">+91-11-2305-2220</a></p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h3>Email Us</h3>
+                        <p><a href="mailto:contact@eci.gov.in">contact@eci.gov.in</a><br><a href="mailto:support@eci.gov.in">support@eci.gov.in</a></p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h3>Working Hours</h3>
+                        <p>Monday - Friday: 9:00 AM - 5:30 PM<br>Saturday: 9:00 AM - 1:00 PM<br>Sunday: Closed</p>
+                    </div>
+                </div>
+                
+                <div class="social-media">
+                    <h3>Connect with Us</h3>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contact-form">
+                <div class="contact-form-container">
+                    <h2>Send Us a Message</h2>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Full Name <span class="required">*</span></label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address <span class="required">*</span></label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Subject <span class="required">*</span></label>
+                            <select id="subject" name="subject" required>
+                                <option value="">Select a subject</option>
+                                <option value="Voter Registration">Voter Registration</option>
+                                <option value="ID Card Issue">ID Card Issue</option>
+                                <option value="Voting Procedure">Voting Procedure</option>
+                                <option value="Technical Support">Technical Support</option>
+                                <option value="General Inquiry">General Inquiry</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message <span class="required">*</span></label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn"><i class="fas fa-paper-plane"></i> Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Map Section -->
+    <div class="map-container">
+        <div class="container">
+            <h2>Our Location</h2>
+            <iframe class="map-frame" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.198296466661!2d77.21107931476414!3d28.62138798242358!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd08a8eacb9d%3A0x74f7d3896ecffd22!2sElection%20Commission%20of%20India!5e0!3m2!1sen!2sin!4v1650053674828!5m2!1sen!2sin" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="faq-container">
+            <div class="faq-heading">
+                <h2>Frequently Asked Questions</h2>
+                <p>Find answers to common questions about the electoral process.</p>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How can I check my voter registration status?</span>
+                    <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                </div>
+                <div class="faq-answer">
+                    <p>You can check your voter registration status on the official Election Commission website by entering your EPIC (Voter ID) number, or by searching with your name, age, gender, and district details. Alternatively, you can call the voter helpline at 1800-11-1950.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What documents are required for voter registration?</span>
+                    <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                </div>
+                <div class="faq-answer">
+                    <p>For voter registration, you need to submit proof of identity (Aadhaar Card, Passport, Driving License, etc.) and proof of residence (Utility bills, Bank passbook, etc.). Additionally, a passport-sized photograph is required. All documents should be self-attested.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How can I update my address in the voter list?</span>
+                    <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                </div>
+                <div class="faq-answer">
+                    <p>To update your address, you need to fill Form 8 and submit it along with proof of your new residence. This can be done online through the National Voter Service Portal (NVSP) or by visiting your nearest Voter Service Center.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What is NOTA (None of the Above) option?</span>
+                    <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                </div>
+                <div class="faq-answer">
+                    <p>NOTA (None of the Above) is an option that allows voters to indicate their disapproval of all the candidates in an election. It's a way to express that none of the candidates deserve your vote. NOTA votes are counted but do not impact the election result.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Can I vote online in Indian elections?</span>
+                    <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                </div>
+                <div class="faq-answer">
+                    <p>Currently, online voting is not available for general elections in India. Voters need to be physically present at their designated polling station to cast their vote using Electronic Voting Machines (EVMs). However, the Election Commission is exploring remote voting technologies for the future.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="contestant.html">Candidates</a></li>
+                        <li><a href="form.html">Register to Vote</a></li>
+                        <li><a href="About Us.html">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Election Commission of India, New Delhi</p>
+                    <p><i class="fas fa-phone"></i> Toll Free: 1800-11-1950</p>
+                    <p><i class="fas fa-envelope"></i> contact@eci.gov.in</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Election Commission of India. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ Toggle
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                // Close all other answers
+                document.querySelectorAll('.faq-answer').forEach(answer => {
+                    if (answer !== question.nextElementSibling) {
+                        answer.classList.remove('active');
+                        answer.previousElementSibling.querySelector('.faq-toggle').innerHTML = '<i class="fas fa-plus"></i>';
+                    }
+                });
+                
+                // Toggle current answer
+                const answer = question.nextElementSibling;
+                answer.classList.toggle('active');
+                const icon = question.querySelector('.faq-toggle');
+                
+                if (answer.classList.contains('active')) {
+                    icon.innerHTML = '<i class="fas fa-minus"></i>';
+                } else {
+                    icon.innerHTML = '<i class="fas fa-plus"></i>';
+                }
+            });
+        });
+        
+        // Form Submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Your message has been sent successfully! We will get back to you soon.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
